@@ -16,12 +16,18 @@ const routes = [
         path: '/favorites',
         name: 'favorites',
         component: FavoritesPage
-    }
+    },
+    {
+        path: '/', // redirect the first path to /home path
+        redirect: '/home'
+
+    },
 ];
 
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: 'history',
+    linkActiveClass: "active-link"
 });
 
 export default router;
