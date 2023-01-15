@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from './pages/HomePage.vue';
-import AboutPage from './pages/About.vue';
+import FavoritesPage from './pages/Favorites.vue';
 
 Vue.use(VueRouter)
 
@@ -13,9 +13,9 @@ const routes = [
 
     },
     {
-        path: '/about',
-        name: 'about',
-        component: AboutPage
+        path: '/favorites',
+        name: 'favorites',
+        component: FavoritesPage
     }
 ];
 
