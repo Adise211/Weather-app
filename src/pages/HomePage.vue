@@ -25,9 +25,9 @@
       <label>Days: </label>
       <select for="days" id="select-days" @change="onSelectDays">
         <option value=""></option>
+        <option value="5">5</option>
         <option value="10">10</option>
-        <option value="7">7</option>
-        <option value="3">3</option>
+        <option value="15">15</option>
       </select>
     </div>
     <button @click="onSearch">Search</button>
