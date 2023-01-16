@@ -8,6 +8,7 @@
           @input="searchCity" 
           list="select-city" 
           placeholder="Enter City"
+          v-model="selectedCity"
         />
         <datalist id="select-city">
           <option
@@ -22,13 +23,14 @@
     </div>
     <div class="input-2">
       <label>Days: </label>
-      <select for="days" id="select-days">
-        <option>10</option>
-        <option>7</option>
-        <option>3</option>
+      <select for="days" id="select-days" @change="onSelectDays">
+        <option value=""></option>
+        <option value="10">10</option>
+        <option value="7">7</option>
+        <option value="3">3</option>
       </select>
     </div>
-    <button>Search</button>
+    <button @click="onSearch">Search</button>
   </div>
 
 </template>
@@ -42,7 +44,8 @@ export default {
       enterValue: '',
       citiesList: [],
       selectedCity: '',
-      days: ''
+      days: '',
+      anableToSearch: false
     }
   },
   methods: {
@@ -53,10 +56,34 @@ export default {
         this.citiesList = result
 
       } else {
-        alert("Plase enter a value")
+        confirm("Plase enter a value");
+      }
+    },
+    onSelectDays(e) {
+      const { value } = e.target;
+      if (value !== "") {
+        this.days = value;
+      } else {
+        confirm("Please pick days");
+      }
+    },
+    onSearch() {
+      if (this.days !== "" && this.selectedCity !== '') {
+        console.log("searching for result! ....");
       }
     }
-  }
+  },
+  // watch: {
+  //   selectedCity: {
+  //     deep: true,
+  //     handler(newValue, oldValue) {
+  //       if (newValue !== oldValue) {
+  //         console.log("days",this.days);
+  //       }
+  //     }
+  //   }
+  // },
+
 }
 </script>
 
