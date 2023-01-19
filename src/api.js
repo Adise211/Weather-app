@@ -32,6 +32,7 @@ export const forecastByDays = async (days, cityKey) => {
             }
         );
         const forecast = await response.json();
+        console.log("forecast result",forecast);
         return forecast;
 
     } catch (error) {

@@ -37,6 +37,8 @@
 
 <script>
 import { searchCities } from '../api.js'; 
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'HomePage',
   data() {
@@ -45,7 +47,8 @@ export default {
       citiesList: [],
       selectedCity: '',
       days: '',
-      anableToSearch: false
+      anableToSearch: false,
+      displayResult: []
     }
   },
   methods: {
@@ -69,20 +72,16 @@ export default {
     },
     onSearch() {
       if (this.days !== "" && this.selectedCity !== '') {
-        console.log("searching for result! ....");
+        this.$store.dispatch('forecastDays', { days: this.days, cityKey: '215854' });
+      } else {
+        console.log("searching for result! ....", this.$store.state.forecast);
+
       }
     }
   },
-  // watch: {
-  //   selectedCity: {
-  //     deep: true,
-  //     handler(newValue, oldValue) {
-  //       if (newValue !== oldValue) {
-  //         console.log("days",this.days);
-  //       }
-  //     }
-  //   }
-  // },
+  computed: {
+      ...mapGetters(['forecastDays']),      
+  }
 
 }
 </script>
