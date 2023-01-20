@@ -20,7 +20,8 @@ export const searchCities = async (value) => {
 };
 
 
-export const forecastByDays = async (days, cityKey) => {
+export const forecastByDays = async ({ days, cityKey }) => {
+    console.log("in api",days,cityKey);
     try {
         const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/${days}day/${cityKey}?apikey=${API_KEY}`,
             {

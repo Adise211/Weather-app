@@ -72,7 +72,7 @@ export default {
     },
     onSearch() {
       if (this.days !== "" && this.selectedCity !== '') {
-        this.$store.dispatch('forecastDays', { days: this.days, cityKey: '215854' });
+        this.$store.dispatch('fetchForecastByDays', { days: this.days, cityKey: '215854' });
       } else {
         console.log("searching for result! ....", this.$store.state.forecast);
 
