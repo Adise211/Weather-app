@@ -14,7 +14,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state() {
         return {
-            forecast: ['hi','there']
+            forecast: []
         }
     },
     mutations: setForecast,
