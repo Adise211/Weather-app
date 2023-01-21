@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cards">
       <h3>{{ tempDate }}</h3>
       <p>{{ minTemp }}</p>
       <p>{{ maxTemp }}</p>
@@ -30,5 +30,8 @@ export default {
 </script>
 
 <style scoped>
+.cards {
+    
+}
 
 </style>
