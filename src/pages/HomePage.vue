@@ -5,7 +5,7 @@
           <label for="select-city">City: </label>
           <input 
             type="text" 
-            id="select-cit" 
+            id="select-city" 
             @input="searchCity" 
             list="select-city" 
             placeholder="Enter City"
@@ -26,22 +26,23 @@
         <label>Days: </label>
         <select for="days" id="select-days" @change="onSelectDays">
           <option value=""></option>
+          <option value="1">1</option>
           <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
         </select>
       </div>
       <button @click="onSearch">Search</button>
     </div>
-    <div v-if="showCards">
-     <diaplay-temp
-        v-for="day in myValue"
-        :key="day.Date"
-        :date="day.Date"
-        :max="day.Temperature.Maximum.Value"
-        :min="day.Temperature.Minimum.Value"
-      >
-      </diaplay-temp>
+    <div v-if="showCards" class="cards">
+      <diaplay-temp
+          v-for="day in myValue"
+          :key="day.Date"
+          :date="day.Date"
+          :max="day.Temperature.Maximum.Value"
+          :min="day.Temperature.Minimum.Value"
+          :icon="day.Day.Icon"
+          :iconText="day.Day.IconPhrase"
+        >
+        </diaplay-temp>
     </div>
   </div>
 
@@ -51,6 +52,7 @@
 import { searchCities } from '../api.js'; 
 import { mapGetters } from 'vuex';
 import DiaplayTemp from '../components/DisplayTemp.vue';
+import moment from 'moment';
 
 export default {
   name: 'HomePage',
@@ -104,6 +106,12 @@ export default {
       
       }
     }
+  },
+  mounted() {
+    const today = new Date();
+    const fixToday = moment(today).format("dddd");
+    console.log("new date", fixToday);
+
   }
 
 }
@@ -131,5 +139,20 @@ export default {
   .auto-list {
     color: aqua;
   }
+  .cards {
+      margin-top: 100px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+  .card-img {
+    margin-left: 90px;
+    margin-top: 30px;
+  }
+  
   
 </style>

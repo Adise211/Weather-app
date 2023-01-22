@@ -6,10 +6,9 @@ import store from './store';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.config.productionTip = false
-
+Vue.use(Vuetify);
 
 new Vue({
-  Vuetify,
   store,
   router,
   render: h => h(App)
