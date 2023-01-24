@@ -8,14 +8,14 @@
             id="select-city" 
             @input="searchCity" 
             list="select-city" 
-            placeholder="Enter City"
+            placeholder="Enter The City Name"
             v-model="selectedCity"
           />
           <datalist id="select-city">
             <option
               class="auto-list"
-              :value="city.LocalizedName" 
               v-for="city in citiesList" 
+              :value="city.LocalizedName" 
               v-bind:key="city.Key"
             >
               {{ city.LocalizedName }}
@@ -30,7 +30,7 @@
           <option value="5">5</option>
         </select>
       </div>
-      <button @click="onSearch">Search</button>
+      <button @click="onSearch" class="search-btn">Search</button>
     </div>
     <div v-if="showCards" class="cards">
       <diaplay-temp
@@ -52,7 +52,6 @@
 import { searchCities } from '../api.js'; 
 import { mapGetters } from 'vuex';
 import DiaplayTemp from '../components/DisplayTemp.vue';
-import moment from 'moment';
 
 export default {
   name: 'HomePage',
@@ -69,13 +68,14 @@ export default {
   methods: {
     async searchCity(e) {
       const name = e.target.value;
-      if (name !== '' ) {
+      // if (name !== '' ) {
         const result = await searchCities(name);
         this.citiesList = result
+        console.log("result",this.citiesList);
 
-      } else {
-        confirm("Please enter a value");
-      }
+      // } else {
+      //   confirm("Please enter a value");
+      // }
     },
     onSelectDays(e) {
       const { value } = e.target;
@@ -106,12 +106,6 @@ export default {
       
       }
     }
-  },
-  mounted() {
-    const today = new Date();
-    const fixToday = moment(today).format("dddd");
-    console.log("new date", fixToday);
-
   }
 
 }
@@ -152,6 +146,15 @@ export default {
   .card-img {
     margin-left: 90px;
     margin-top: 30px;
+  }
+  .search-btn {
+    background-color: rgb(92, 128, 207);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+  }
+  .search-btn:active {
+    color: black;
   }
   
   
